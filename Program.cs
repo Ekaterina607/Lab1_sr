@@ -1,7 +1,11 @@
 ﻿//Задание-1
-
-class Factorial
+Console.WriteLine("Введите число для которого нужно найти факториал: ");
+int result = Factorial(int.Parse(Console.ReadLine()));
+Console.WriteLine("Результат: " +result);
+static int Factorial(int n)
 {
+    if (n==1) return 1;
+    return n * Factorial(n - 1);
 
 }
 
