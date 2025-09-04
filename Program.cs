@@ -11,9 +11,26 @@ static int Factorial(int n)
 
 //Задание-2
 
-class Func
+Console.WriteLine("Введите число для которого нужно расчитать функцию: ");
+int result2 = int.Parse(Console.ReadLine());
+if (result2 < 0 || result2 == 0)
 {
+    Console.WriteLine("Ошибка");
+}
+else
+{
+    double result22 = Func(result2);
+    Console.WriteLine("Результат: " + result22);
+}
 
+
+static double Func(int n)
+{
+    double b = Math.Pow(double.E, Math.Sin(n));
+    double a = Math.Sqrt(Math.Log(4.0 / n));
+    double c = 1.0 / n;
+    return a-c-b;
+    
 }
 
 //Задание-3
