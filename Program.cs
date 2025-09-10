@@ -12,16 +12,24 @@ static int Factorial(int n)
 //Задание-2
 
 Console.WriteLine("Введите число для которого нужно расчитать функцию: ");
-int result2 = int.Parse(Console.ReadLine());
-if (result2 < 0 || result2 == 0)
+string res = Console.ReadLine();
+if (int.TryParse(res, out int result2))
 {
-    Console.WriteLine("Ошибка");
+    if (result2 < 0 || result2 == 0)
+    {
+        Console.WriteLine("Ошибка");
+    }
+    else
+    {
+        double result22 = Func(result2);
+        Console.WriteLine("Результат: " + result22);
+    }
 }
 else
 {
-    double result22 = Func(result2);
-    Console.WriteLine("Результат: " + result22);
+    Console.WriteLine("Введите число!!!");
 }
+
 
 
 static double Func(int n)
