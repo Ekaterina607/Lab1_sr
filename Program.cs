@@ -35,19 +35,28 @@ static double Func(int n)
 
 //Задание-3
 Console.WriteLine("Введите число n: ");
-int result3 = int.Parse(Console.ReadLine());
-int a = 0;
-int b = 1;
-int next;
-while (result3 > 0)
+string r3 = Console.ReadLine();
+int result3;
+if (int.TryParse(r3, out result3))
 {
-    Console.WriteLine(a);
-    next = a + b;
-    a = b;
-    b = next;
-    result3--;
+    int a = 0;
+    int b = 1;
+    int next;
+    while (result3 > 0)
+    {
+        Console.WriteLine(a);
+        next = a + b;
+        a = b;
+        b = next;
+        result3--;
 
+    }
 }
+else
+{
+    Console.WriteLine("Введите число!");
+}
+
 
 
 //Задание-4
