@@ -1,13 +1,21 @@
 ﻿//Задание-1
 Console.WriteLine("Введите число для которого нужно найти факториал: ");
-int result = Factorial(int.Parse(Console.ReadLine()));
-Console.WriteLine("Результат: " +result);
-static int Factorial(int n)
+string qqq = Console.ReadLine();
+if (int.TryParse(qqq, out int result))
 {
-    if (n == 0 || n==1) return 1;
-    return n * Factorial(n - 1);
+    Console.WriteLine("Результат: " + Factorial(result));
+    static int Factorial(int n)
+    {
+        if (n == 0 || n == 1) return 1;
+        return n * Factorial(n - 1);
 
+    }
 }
+else
+{
+    Console.WriteLine("Введите число!!!");
+}
+
 
 //Задание-2
 
