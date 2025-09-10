@@ -61,7 +61,52 @@ else
 
 //Задание-4
 
-class Teilor
+Console.Write("Введите значение x: ");
+string x1 = Console.ReadLine();
+double x;
+Console.Write("Введите количество членов ряда: ");
+string n1 = Console.ReadLine();
+int n;
+if (double.TryParse(x1, out x) && int.TryParse(n1, out n))
 {
+    double sinX = SinTaylor(x, n);
 
+    double expSin = ExpTaylor(sinX, n);
+
+    Console.WriteLine($"e^{sinX} = {expSin:F6}");
+    Console.WriteLine($"Проверка: Math.Exp(Math.Sin({x})) = {Math.Exp(Math.Sin(x)):F6}");
+
+    static double SinTaylor(double x, int n)
+    {
+        double sum = 0;
+        double term = x;
+        sum += term;
+
+        for (int i = 1; i < n; i++)
+        {
+
+            term *= -x * x / ((2 * i + 1) * (2 * i));
+            sum += term;
+        }
+        return sum;
+    }
+
+    static double ExpTaylor(double u, int n)
+    {
+        double sum = 1.0;
+        double term = 1.0;
+
+        for (int i = 1; i <= n; i++)
+        {
+            term *= u / i;
+            sum += term;
+        }
+        return sum;
+    }
 }
+else
+{
+    Console.WriteLine("Введите числа!!!");
+}
+ 
+
