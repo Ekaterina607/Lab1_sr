@@ -62,51 +62,44 @@ else
 //Задание-4
 
 Console.Write("Введите значение x: ");
-string x1 = Console.ReadLine();
-double x;
-Console.Write("Введите количество членов ряда: ");
-string n1 = Console.ReadLine();
-int n;
-if (double.TryParse(x1, out x) && int.TryParse(n1, out n))
+if (!double.TryParse(Console.ReadLine(), out double x) && !int.TryParse(Console.ReadLine(), out int n))
 {
-    double sinX = SinTaylor(x, n);
+    Console.WriteLine("Ошибка: введите корректное число.");
+    return;
+}
+Console.WriteLine("Введите количество знаков после запятой: ");
+int n11;
+if (!int.TryParse(Console.ReadLine(), out n11))
+{
+    Console.WriteLine("Ошибка: введите корректное число.");
+    return;
+}
+double p1 = 1e-6;
+double result1 = TruncateDouble(ExpSeries(x, p1, n11), n11);
+Console.WriteLine($"e^{x} = {result1}");
+static double TruncateDouble(double value, int znaki)
+{
+    if (znaki< 0) throw new ArgumentException("Количество знаков не может быть отрицательным.");
 
-    double expSin = ExpTaylor(sinX, n);
+    double factor = Math.Pow(10, znaki);
+    return Math.Truncate(value * factor) / factor;
+}
 
-    Console.WriteLine($"e^{sinX} = {expSin:F6}");
-    Console.WriteLine($"Проверка: Math.Exp(Math.Sin({x})) = {Math.Exp(Math.Sin(x)):F6}");
+static double ExpSeries(double x, double precision, int n11)
+{
+    double total = 0.0;
+    double term = 1.0; 
+    int n = 0;
 
-    static double SinTaylor(double x, int n)
+    while (Math.Abs(term) >= precision)
     {
-        double sum = 0;
-        double term = x;
-        sum += term;
-
-        for (int i = 1; i < n; i++)
-        {
-
-            term *= -x * x / ((2 * i + 1) * (2 * i));
-            sum += term;
-        }
-        return sum;
+        total += term;
+        n++;
+        term = term * x / n; 
     }
 
-    static double ExpTaylor(double u, int n)
-    {
-        double sum = 1.0;
-        double term = 1.0;
+    return Math.Round(total, n11+1);
+}
 
-        for (int i = 1; i <= n; i++)
-        {
-            term *= u / i;
-            sum += term;
-        }
-        return sum;
-    }
-}
-else
-{
-    Console.WriteLine("Введите числа!!!");
-}
- 
+
 
